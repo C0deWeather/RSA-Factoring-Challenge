@@ -1,0 +1,43 @@
+#!/usr/bin/python3
+"""
+factor a number into smaller numbers
+"""
+import sys
+
+def factor(n):
+    """
+    prints the factors of a number
+
+    Args:
+    n (int): number to be factored
+    """
+    for p in range(2, n // 2 + 1):
+        if n % p == 0:
+            q = n // p
+            break
+    print("{}={}*{}".format(n, q, p))
+
+
+def main():
+    """
+    Program entry point
+    """
+    if len(sys.argv) != 2:
+        print('Usage: factors <file>', file=sys.stderr)
+        sys.exit(1)
+    try:
+        file_stream = open(sys.argv[1], "r") #open file
+
+        for line in file_stream:
+            n = int(line)
+            factor(n)
+
+        file_stream.close()
+
+    except FileNotFoundError:
+        print('Error: can\'t open file', file=sys.stderr)
+
+
+if __name__ == "__main__":
+    main()
+
